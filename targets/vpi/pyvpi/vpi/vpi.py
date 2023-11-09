@@ -149,8 +149,8 @@ class VpiBridge(object):
         else:
             self.v2 = Vpi(v2In)
 
-        print self.v1.NameGet()
-        print self.v2.NameGet()
+        print(self.v1.NameGet())
+        print(self.v2.NameGet())
 
         self.bridge = pyvpi.BridgeCreate(self.v1.v, self.v2.v);
 
@@ -177,8 +177,8 @@ class VpiTool(object):
         count = 0;
         while(True):
             data = v.Recv(True);
-            print "[%.3d]" % count
-            print data
+            print("[%.3d]" % count)
+            print(data)
             count = count+1;
 
     def Send(self, v1, data):

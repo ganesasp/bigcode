@@ -80,7 +80,7 @@ s += """
 """
 
 
-for ((p,m), lst) in modules.iteritems():
+for ((p,m), lst) in modules.items():
     s += "static ucli_command_handler_f %s_ucli_%s_handlers__[] = \n" % (p,m)
     s += "{\n"
     for h in lst:

@@ -152,7 +152,7 @@ class UcliGenerator(object):
                 name = "%s__%s" % (parent, key)
 
             s += 'ucli_node_t* %s__node__ = NULL;\n' % (name)
-            for(k, v) in value.iteritems():
+            for(k, v) in value.items():
                 s += self.__emit_definitions(k, v, name)
         else:
             raise Exception(type(value))
@@ -171,7 +171,7 @@ class UcliGenerator(object):
             else:
                 name = "%s__%s" % (parent, key)
             s += '    if(%s__node__ == NULL) %s__node__ = ucli_node_create("%s", NULL, NULL);\n' % (name, name, key.replace("_ucli", ""))
-            for(k, v) in value.iteritems():
+            for(k, v) in value.items():
                 s += self.__emit_inits(k, v, name)
 
         return s
@@ -189,7 +189,7 @@ class UcliGenerator(object):
                 name = "%s__%s" % (parent, key)
             if parent:
                 s += "    ucli_node_subnode_add(%s__node__, %s__%s__node__);\n" % (parent, parent, key)
-            for(k, v) in value.iteritems():
+            for(k, v) in value.items():
                 s += self.__emit_tree(k, v, name)
         else:
             raise Exception(type(value))
@@ -198,15 +198,15 @@ class UcliGenerator(object):
 
     def generate_str(self):
         s = ""
-        for(k, v) in self.nodes.iteritems():
+        for(k, v) in self.nodes.items():
             s += self.__emit_definitions(k, v, None)
         s += "static ucli_node_t* __ucli_auto_init__(void)\n"
         s += "{\n"
-        for(k, v) in self.nodes.iteritems():
+        for(k, v) in self.nodes.items():
             s += self.__emit_inits(k, v, None)
-        for(k, v) in self.nodes.iteritems():
+        for(k, v) in self.nodes.items():
             s += self.__emit_tree(k, v, None)
-        s += "    return %s__node__;\n" % self.nodes.keys()[0]
+        s += "    return %s__node__;\n" % list(self.nodes.keys())[0]
         s += "}\n"
         return s
 
@@ -236,7 +236,7 @@ class UcliGenerator(object):
         source = re.sub(expr, s, source, flags=re.DOTALL)
 
         if stdout:
-            print source
+            print(source)
         else:
             wod.write_on_diff(src, source, msg=False)
 
