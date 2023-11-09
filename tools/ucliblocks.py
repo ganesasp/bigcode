@@ -34,7 +34,7 @@ import datetime
 
 datafilename = sys.argv[1]
 datafile = open(datafilename, "r");
-data = yaml.load(datafile);
+data = yaml.full_load(datafile);
 datafile.close()
 array_name = sys.argv[2]
 
