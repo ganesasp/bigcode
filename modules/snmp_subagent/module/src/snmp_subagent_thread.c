@@ -31,7 +31,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <sys/eventfd.h>
-
+#include <unistd.h>
 
 /** Thread control. */
 typedef struct snmp_subagent_thread_ctrl_s {
